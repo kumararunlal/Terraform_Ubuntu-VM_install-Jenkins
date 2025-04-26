@@ -1,0 +1,6 @@
+resource_group_name = "jenkins-rg"
+location = "Canada Central"
+vm_name = "jenkins-vm"
+#vm_size = "Standard_D2s_v3 "
+#admin_username = "azadmin"
+#admin_password = "azadmin@123"
