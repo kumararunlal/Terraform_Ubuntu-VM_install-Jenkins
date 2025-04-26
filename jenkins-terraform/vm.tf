@@ -1,0 +1,33 @@
+resource "azurerm_linux_virtual_machine" "vm" {
+  name                  = "${var.vm_name}"
+  resource_group_name   = azurerm_resource_group.rg.name
+  location              = azurerm_resource_group.rg.location
+  size                  = "Standard_B2s"
+  admin_username        = "azureuser"
+  #will attach the nic card with vm
+  network_interface_ids = [azurerm_network_interface.nic.id]
+  disable_password_authentication = true
+
+  admin_ssh_key {
+    username   = "azureuser"
+    #below mentioned is the path of our ssh public key
+    public_key = file("${path.module}/ssh/terraform-azure.pub")
+    #it will look for the file in current directory
+    #cd ./
+  }
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+    name                 = "jenkins-osdisk"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "20_04-lts"
+    version   = "latest"
+  }
+
+  custom_data = filebase64("install_jenkins.sh")
+}
