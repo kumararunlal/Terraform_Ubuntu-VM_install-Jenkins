@@ -25,8 +25,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "24.04-lts-gen2"
-    version   = "latest"
+    sku       = "20_04-lts-gen2"
+    version   = "20.04.202402200"
   }
 
   custom_data = filebase64("install_jenkins.sh")
