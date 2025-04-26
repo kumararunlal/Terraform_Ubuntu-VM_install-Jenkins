@@ -24,9 +24,9 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   source_image_reference {
     publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "20_04-lts-gen2"
-    version   = "20.04.202402200"
+    offer     = "0001-com-ubuntu-server-focal",
+    sku       = "20_04-lts-gen2",
+    version   = "latest"
   }
 
   custom_data = filebase64("install_jenkins.sh")
