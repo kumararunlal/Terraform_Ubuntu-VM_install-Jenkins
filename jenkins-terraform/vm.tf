@@ -30,9 +30,9 @@ resource "azurerm_linux_virtual_machine" "vm" {
   }
 
   #custom_data = filebase64("cloud-init-config.yaml")
-  #custom_data = base64encode(<<-EOF
+  custom_data = base64encode(<<-EOF
               #!/bin/bash -ex
-              export DEBIAN_FRONTEND=noninteractive
+              #export DEBIAN_FRONTEND=noninteractive
 
               apt-get update
               apt-get install -y openjdk-11-jdk curl gnupg2
