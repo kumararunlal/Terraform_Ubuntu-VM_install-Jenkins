@@ -29,6 +29,21 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
   }
 
-  custom_data = filebase64("cloud-init-config.yaml")
-  
+  #custom_data = filebase64("cloud-init-config.yaml")
+  #custom_data = base64encode(<<-EOF
+              #!/bin/bash -ex
+              export DEBIAN_FRONTEND=noninteractive
+
+              apt-get update
+              apt-get install -y openjdk-11-jdk curl gnupg2
+
+              curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | gpg --dearmor -o /usr/share/keyrings/jenkins-keyring.gpg
+              echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.gpg] https://pkg.jenkins.io/debian-stable binary/" > /etc/apt/sources.list.d/jenkins.list
+
+              apt-get update
+              apt-get install -y jenkins
+
+              systemctl start jenkins
+              systemctl enable jenkins
+              EOF)
 }
