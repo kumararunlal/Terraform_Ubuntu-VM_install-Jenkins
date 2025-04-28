@@ -41,5 +41,6 @@ resource "azurerm_linux_virtual_machine" "vm" {
               sudo systemctl enable jenkins
               systemctl start jenkins
               systemctl enable jenkins
-              EOF)
+              EOF
+  )
 }
