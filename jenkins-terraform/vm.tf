@@ -29,6 +29,6 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
   }
 
-  custom_data = filebase64("${path.module}/jenkins-terraform/app/app.sh")
+  custom_data = filebase64("${path.module}/app/app.sh")
   
 }
