@@ -1,8 +1,8 @@
 # Create network security group with SSH and Jenkins ports open
 resource "azurerm_network_security_group" "jenkins_nsg" {
   name                = "${var.vm_name}-nsg"
-  location            = azurerm_resource_group.jenkins_rg.location
-  resource_group_name = azurerm_resource_group.jenkins_rg.name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
 
   security_rule {
     name                       = "SSH"
