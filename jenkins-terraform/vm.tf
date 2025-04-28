@@ -29,5 +29,5 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
   }
 
-  custom_data = filebase64("install_jenkins.sh")
+  custom_data = filebase64("${path.module}/app/app.sh")
 }
