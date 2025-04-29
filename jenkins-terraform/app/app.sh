@@ -4,7 +4,7 @@
 sudo apt update && sudo apt upgrade -y
 
 # Install Java (Jenkins dependency)
-sudo apt install -y openjdk-11-jdk
+sudo apt install -y openjdk-17-jdk
 
 # Add Jenkins repository and install Jenkins
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo apt-key add -
