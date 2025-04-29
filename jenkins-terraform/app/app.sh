@@ -1,10 +1,17 @@
 #!/bin/bash
+
+# Update system
+sudo apt update && sudo apt upgrade -y
+
+# Install Java (Jenkins dependency)
+sudo apt install -y openjdk-11-jdk
+
+# Add Jenkins repository and install Jenkins
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+echo "deb https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list
 sudo apt update
-sudo apt install nginx
-sudo systemctl start nginx
-sudo systemctl enable nginx
-sudo ufw allow 'Nginx Full'
-sudo ufw allow 'Nginx HTTP'
-sudo ufw allow 'Nginx HTTPS'
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
+sudo apt install -y jenkins
+
+# Start and enable Jenkins service
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
