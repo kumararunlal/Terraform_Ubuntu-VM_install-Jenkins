@@ -29,18 +29,9 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
   }
 
+  custom_data = filebase64("${path.module}/app/app.sh")
   #custom_data = filebase64("cloud-init-config.yaml")
-  custom_data = base64encode(<<-EOF
+  #custom_data = base64encode(<<-EOF
               #!/bin/bash -ex
-              sudo apt update
-              sudo apt install -y openjdk-11-jdk
-              wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-              sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-              sudo apt update
-              sudo apt install -y jenkins
-              sudo systemctl enable jenkins
-              systemctl start jenkins
-              systemctl enable jenkins
-              EOF
-  )
+             
 }
