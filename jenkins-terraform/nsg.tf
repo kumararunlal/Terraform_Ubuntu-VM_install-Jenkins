@@ -6,7 +6,7 @@ resource "azurerm_network_security_group" "jenkins_nsg" {
 
   security_rule {
     name                       = "SSH"
-    priority                   = 1001
+    priority                   = 110
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -18,12 +18,12 @@ resource "azurerm_network_security_group" "jenkins_nsg" {
 
   security_rule {
     name                       = "Jenkins"
-    priority                   = 1002
+    priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range      = "8080"
+    destination_port_range      = ["80", "443", "8080", "8443"] # Multiple ports here
     source_address_prefix       = "*"
     destination_address_prefix = "*"
   }
