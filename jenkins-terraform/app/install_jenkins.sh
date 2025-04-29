@@ -15,3 +15,5 @@ sudo apt install -y jenkins
 # Start and enable Jenkins service
 sudo systemctl start jenkins
 sudo systemctl enable jenkins
+scp install_jenkins.sh azureuser@52.228.34.77:/home/azureuser/
+ssh azureuser@52.228.34.77 "chmod +x /home/azureuser/install_jenkins.sh && sudo /home/azureuser/install_jenkins.sh"
