@@ -29,7 +29,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
   }
 
-  custom_data = filebase64("${path.module}/app.sh")
+  custom_data = filebase64("${path.module}/app/app.sh")
   #custom_data = filebase64("cloud-init-config.yaml")
   #custom_data = base64encode(<<-EOF
               #!/bin/bash -ex
